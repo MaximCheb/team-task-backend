@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="DEBUG">
+    <Appenders>
+        <Console name="LogToConsole" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+        </Console>
+
+        <RollingFile name="LogToRollingFile" fileName="logs/app.log"
+                     filePattern="logs/$${date:yyyy-MM}/app-%d{MM-dd-yyyy}-%i.log.gz">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} %p %c{1.} [%t] %-5level %logger{36} - %msg%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy />
+                <SizeBasedTriggeringPolicy size="10 MB"/>
+            </Policies>
+        </RollingFile>
+
+        <SpringProfile name="dev | local">
+            <Console name="LogToConsole">
+                <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+            </Console>
+            <RollingFile name="LogToRollingFile" fileName="logs/app.log"
+                         filePattern="logs/$${date:yyyy-MM}/app-%d{MM-dd-yyyy}-%i.log.gz">
+                <PatternLayout pattern="%d{HH:mm:ss.SSS} %p %c{1.} [%t] %-5level %logger{36} - %msg%n"/>
+                <Policies>
+                    <TimeBasedTriggeringPolicy />
+                    <SizeBasedTriggeringPolicy size="10 MB"/>
+                </Policies>
+            </RollingFile>
+        </SpringProfile>
+
+        <SpringProfile name="prod">
+            <RollingFile name="LogToRollingFile" fileName="logs/app.log"
+                         filePattern="logs/$${date:yyyy-MM}/app-%d{MM-dd-yyyy}-%i.log.gz">
+                <PatternLayout pattern="%d{HH:mm:ss.SSS} %p %c{1.} [%t] %-5level %logger{36} - %msg%n"/>
+                <Policies>
+                    <TimeBasedTriggeringPolicy />
+                    <SizeBasedTriggeringPolicy size="10 MB"/>
+                </Policies>
+            </RollingFile>
+        </SpringProfile>
+
+        <SpringProfile name="prod">
+            <Console name="LogToConsole">
+            </Console>
+        </SpringProfile>
+    </Appenders>
+
+    <Loggers>
+        <Root level="info">
+            <AppenderRef ref="LogToConsole"/>
+        </Root>
+    </Loggers>
+    <Logger name="org.apache.test" level="debug" additivity="false">
+        <AppenderRef ref="LogToConsole"/>
+    </Logger>
+    <Logger name="org.bear.simple.marketplace" level="debug" additivity="false">
+        <AppenderRef ref="LogToConsole"/>
+    </Logger>
+</Configuration>
