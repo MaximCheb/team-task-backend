@@ -12,6 +12,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @Getter
 @Setter
+@Builder
 @EqualsAndHashCode
 @Entity
 @Table(schema = "project", name = "project")

@@ -2,9 +2,9 @@ spring:
   application:
     name: task_backend
   datasource:
-    username: ${PGSQL_USER}
-    password: ${PGSQL_PASSWORD}
-    url: jdbc:postgresql://localhost:5432/${PGSQL_DB_NAME}
+    username: task-db-admin
+    password: XlVb7lvHbcEZZH8zQD
+    url: jdbc:postgresql://localhost:5432/task-db
     driver: org.hibernate.dialect.PostgreSQL10Dialect
   jpa:
     hibernate:
