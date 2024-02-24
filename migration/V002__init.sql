@@ -24,7 +24,6 @@ CREATE TABLE IF NOT EXISTS users.system_role
     code            VARCHAR(64) UNIQUE NOT NULL,
     name            VARCHAR(128) UNIQUE NOT NULL,
     prev_role       BIGSERIAL
-    CONSTRAINT fk_prev_role FOREIGN KEY (prev_role) REFERENCES users.system_role(id) ON DELETE SET NULL
 );
 
 
